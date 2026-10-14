@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MPI IPA Kelas VIII — Sistem Pernapasan Manusia</title>
+<style>
+:root{--navy:#12304a;--blue:#168aad;--sky:#dff6ff;--mint:#d8f3dc;--yellow:#ffdd75;--coral:#ff8f76;--ink:#183247;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eafaff,#f4fff5);line-height:1.55}
+header{background:linear-gradient(120deg,#075985,#168aad);color:white;padding:22px max(18px,calc((100% - 1100px)/2));}
+header .tag{font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9}h1{margin:.25rem 0;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15}header p{max-width:760px;margin:.5rem 0 0}
+nav{display:flex;gap:8px;flex-wrap:wrap;max-width:1100px;margin:14px auto;padding:0 14px}
+nav button,.btn{border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer;background:#fff;color:#075985;box-shadow:0 3px 10px #0b48621a}
+nav button.active, .btn.primary{background:var(--navy);color:white}button:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+main{max-width:1100px;margin:0 auto;padding:0 16px 40px}.screen{display:none;animation:fade .3s ease}.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:#fff;border:1px solid #d9edf3;border-radius:22px;padding:clamp(16px,3vw,28px);box-shadow:0 12px 35px #0c4a6e0d;margin:16px 0}
+h2{color:#075985;margin-top:0}h3{margin-bottom:8px;color:#0c4a6e}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.pill{display:inline-block;background:var(--sky);color:#075985;border-radius:99px;padding:4px 10px;font-size:.85rem;font-weight:700}
+.objectives li{margin:.45rem 0}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+@media(max-width:700px){.hero-grid{grid-template-columns:1fr}}
+.lung-wrap{background:radial-gradient(circle,#e5fbff,#f6fff8);border-radius:20px;padding:12px;text-align:center}
+svg{max-width:100%;height:auto}.organ{cursor:pointer;transition:filter .2s,transform .2s;transform-box:fill-box;transform-origin:center}.organ:hover{filter:drop-shadow(0 0 5px #f59e0b);transform:scale(1.035)}
+.organ:focus{outline:none;filter:drop-shadow(0 0 5px #f59e0b)}
+.organ-card{padding:14px;border-radius:16px;background:#f3fbfd;border:1px solid #d6eef4}
+.organ-card button{margin-top:8px}.muted{color:#577184}.feedback{min-height:28px;font-weight:700;margin-top:10px}.correct{color:#16803c}.wrong{color:#b42318}
+.question{padding:15px;background:#f4fbff;border-radius:16px;margin:12px 0;border:1px solid #d9edf3}
+.options{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.options button{border:1px solid #b6dbe6;border-radius:12px;padding:9px 12px;background:white;cursor:pointer;color:var(--ink)}.options button:hover{background:#e5f7ff}
+.bubble{display:inline-block;background:#e0f2fe;border-radius:18px;padding:10px 14px;margin:5px;position:relative;font-weight:700}.bubble:after{content:"";position:absolute;bottom:-5px;left:20px;width:10px;height:10px;background:inherit;transform:rotate(45deg)}
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.flow span{background:#e4f7ed;padding:10px 12px;border-radius:12px;font-weight:700}.flow b{color:#168aad}
+.sort-area{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.sort-chip{padding:10px 12px;border-radius:12px;background:#fff0c2;border:2px solid #f3c84b;font-weight:700}.sort-chip.done{background:#d8f3dc;border-color:#6bbf83}
+.progress{height:9px;background:#e4eef2;border-radius:99px;overflow:hidden}.progress div{height:100%;background:#168aad;width:0;transition:width .3s}
+footer{text-align:center;padding:20px;color:#577184;font-size:.9rem}
+.small{font-size:.92rem}.label{font-size:.8rem;font-weight:800;color:#577184;text-transform:uppercase;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">Media Pembelajaran Interaktif • IPA Kelas VIII</div>
+  <h1>Sistem Pernapasan Manusia</h1>
+  <p>Kenali organ, ikuti perjalanan udara, dan uji pemahamanmu melalui aktivitas interaktif.</p>
+</header>
+<nav aria-label="Navigasi materi">
+  <button class="active" data-screen="beranda">Beranda</button>
+  <button data-screen="jelajah">Jelajah Organ</button>
+  <button data-screen="alur">Alur Pernapasan</button>
+  <button data-screen="latihan">Kuis</button>
+  <button data-screen="urutkan">Urutkan Organ</button>
+</nav>
+<main>
+<section id="beranda" class="screen active">
+ <div class="card hero-grid">
+  <div>
+   <span class="pill">Tujuan Pembelajaran</span>
+   <h2>Bagaimana udara masuk ke tubuh?</h2>
+   <p>Setelah belajar, kamu diharapkan mampu:</p>
+   <ul class="objectives">
+    <li>Mengidentifikasi organ-organ penyusun sistem pernapasan manusia.</li>
+    <li>Membedakan organ berdasarkan bentuk dan letaknya.</li>
+    <li>Menjelaskan jalur udara dari hidung hingga alveolus.</li>
+   </ul>
+   <button class="btn primary" onclick="go('jelajah')">Mulai belajar →</button>
+  </div>
+  <div class="lung-wrap">
+   <svg viewBox="0 0 360 320" role="img" aria-label="Ilustrasi sistem pernapasan manusia">
+    <path d="M164 30 Q180 20 196 30 L196 95 L164 95Z" fill="#f7c9a9" stroke="#bd7b63" stroke-width="2"/>
+    <path d="M164 82 L196 82 L196 150" stroke="#168aad" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M180 148 L145 180 M180 148 L215 180" stroke="#168aad" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M170 100 C130 92 90 126 80 190 C68 256 105 281 150 258 C172 246 174 203 174 160Z" fill="#ff9d9d" stroke="#d65f6b" stroke-width="3"/>
+    <path d="M190 100 C230 92 270 126 280 190 C292 256 255 281 210 258 C188 246 186 203 186 160Z" fill="#ff9d9d" stroke="#d65f6b" stroke-width="3"/>
+    <path d="M180 146 L139 205 M180 146 L221 205" stroke="#168aad" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <g fill="#fff1f0" stroke="#d65f6b" stroke-width="1.5"><circle cx="126" cy="218" r="12"/><circle cx="145" cy="236" r="10"/><circle cx="234" cy="218" r="12"/><circle cx="215" cy="236" r="10"/></g>
+    <path d="M160 285 Q180 300 200 285" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+    <text x="180" y="15" text-anchor="middle" font-size="12" fill="#075985">Saluran udara</text>
+    <text x="180" y="313" text-anchor="middle" font-size="12" fill="#075985">Ilustrasi sederhana</text>
+   </svg>
+   <div class="bubble">Tarik napas…</div><div class="bubble" style="background:#d8f3dc">Hembuskan…</div>
+  </div>
+ </div>
+ <div class="card"><h2>Petunjuk penggunaan</h2><div class="grid">
+  <div class="organ-card"><h3>1. Jelajah Organ</h3><p>Klik organ pada gambar atau pilih kartu untuk membaca fungsi organ.</p></div>
+  <div class="organ-card"><h3>2. Alur Pernapasan</h3><p>Tekan tombol untuk melihat urutan perjalanan udara.</p></div>
+  <div class="organ-card"><h3>3. Kuis & Urutkan</h3><p>Jawab pertanyaan dan susun organ sesuai jalur udara.</p></div>
+ </div></div>
+</section>
+
+<section id="jelajah" class="screen">
+ <div class="card"><span class="pill">Aktivitas 1</span><h2>Jelajah organ pernapasan</h2>
+ <p>Klik bagian yang ditandai pada ilustrasi atau tekan salah satu nama organ. Amati bentuk dan baca fungsinya.</p>
+ <div class="hero-grid">
+  <div class="lung-wrap">
+   <svg viewBox="0 0 360 400" role="img" aria-label="Gambar interaktif organ pernapasan">
+    <g class="organ" tabindex="0" role="button" aria-label="Hidung" onclick="showOrgan('Hidung')" onkeydown="if(event.key==='Enter')showOrgan('Hidung')">
+     <path d="M163 26 Q180 12 197 26 L205 62 Q195 77 180 76 Q165 77 155 62Z" fill="#f3c1a2" stroke="#ad735a" stroke-width="2"/><text x="180" y="51" text-anchor="middle" font-size="11">1</text></g>
+    <g class="organ" tabindex="0" role="button" aria-label="Faring" onclick="showOrgan('Faring')" onkeydown="if(event.key==='Enter')showOrgan('Faring')">
+     <path d="M169 76 L191 76 L194 106 L166 106Z" fill="#f0a9a9" stroke="#b95b6b" stroke-width="2"/><text x="180" y="96" text-anchor="middle" font-size="11">2</text></g>
+    <g class="organ" tabindex="0" role="button" aria-label="Laring" onclick="showOrgan('Laring')" onkeydown="if(event.key==='Enter')showOrgan('Laring')">
+     <path d="M167 106 L193 106 L198 128 L162 128Z" fill="#e5b4d0" stroke="#a45a91" stroke-width="2"/><text x="180" y="121" text-anchor="middle" font-size="11">3</text></g>
+    <g class="organ" tabindex="0" role="button" aria-label="Trakea" onclick="showOrgan('Trakea')" onkeydown="if(event.key==='Enter')showOrgan('Trakea')">
+     <rect x="169" y="128" width="22" height="70" rx="8" fill="#a8dce8" stroke="#168aad" stroke-width="2"/><path d="M170 141H190 M170 153H190 M170 165H190 M170 177H190 M170 189H190" stroke="#168aad" stroke-width="2"/><text x="180" y="167" text-anchor="middle" font-size="10">4</text></g>
+    <path d="M180 196 L145 225 M180 196 L215 225" stroke="#168aad" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <g class="organ" tabindex="0" role="button" aria-label="Bronkus" onclick="showOrgan('Bronkus')" onkeydown="if(event.key==='Enter')showOrgan('Bronkus')">
+     <path d="M180 196 L145 225 M180 196 L215 225" stroke="#3b9bb5" stroke-width="8" fill="none" stroke-linecap="round"/><text x="180" y="213" text-anchor="middle" font-size="11" fill="#fff">5</text></g>
+    <g class="organ" tabindex="0" role="button" aria-label="Paru-paru" onclick="showOrgan('Paru-paru')" onkeydown="if(event.key==='Enter')showOrgan('Paru-paru')">
+     <path d="M168 146 C126 132 87 164 79 234 C70 302 108 329 148 302 C168 288 170 245 170 205Z" fill="#ffaaaa" stroke="#d65f6b" stroke-width="3"/>
+     <path d="M192 146 C234 132 273 164 281 234 C290 302 252 329 212 302 C192 288 190 245 190 205Z" fill="#ffaaaa" stroke="#d65f6b" stroke-width="3"/>
+     <text x="121" y="260" text-anchor="middle" font-size="13" fill="#843344">6</text><text x="239" y="260" text-anchor="middle" font-size="13" fill="#843344">6</text></g>
+    <g class="organ" tabindex="0" role="button" aria-label="Alveolus" onclick="showOrgan('Alveolus')" onkeydown="if(event.key==='Enter')showOrgan('Alveolus')">
+     <circle cx="242" cy="288" r="22" fill="#fff" stroke="#d65f6b" stroke-width="2"/><g fill="#ffc6d0" stroke="#d65f6b"><circle cx="234" cy="280" r="7"/><circle cx="247" cy="279" r="7"/><circle cx="253" cy="291" r="7"/><circle cx="239" cy="296" r="7"/></g><text x="242" y="322" text-anchor="middle" font-size="11" fill="#843344">7 alveolus</text></g>
+    <path d="M115 337 Q180 365 245 337" stroke="#f59e0b" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <text x="180" y="386" text-anchor="middle" font-size="12" fill="#075985">Diafragma</text>
+   </svg>
+  </div>
+  <div>
+   <div id="organInfo" class="organ-card" aria-live="polite"><div class="label">Pilih organ</div><h3>Organ pernapasan</h3><p>Pilih angka pada gambar untuk melihat nama, ciri, dan fungsi organ.</p></div>
+   <div class="grid" style="margin-top:12px">
+    <button class="btn" onclick="showOrgan('Hidung')">1. Hidung</button><button class="btn" onclick="showOrgan('Faring')">2. Faring</button>
+    <button class="btn" onclick="showOrgan('Laring')">3. Laring</button><button class="btn" onclick="showOrgan('Trakea')">4. Trakea</button>
+    <button class="btn" onclick="showOrgan('Bronkus')">5. Bronkus</button><button class="btn" onclick="showOrgan('Paru-paru')">6. Paru-paru</button>
+    <button class="btn" onclick="showOrgan('Alveolus')">7. Alveolus</button>
+   </div>
+  </div>
+ </div></div>
+</section>
+
+<section id="alur" class="screen">
+ <div class="card"><span class="pill">Aktivitas 2</span><h2>Ikuti perjalanan udara</h2>
+ <p>Udara yang kita hirup melewati beberapa organ sebelum pertukaran gas terjadi di alveolus.</p>
+ <div class="flow" id="flowSteps"><span>Hidung</span><b>→</b><span>Faring</span><b>→</b><span>Laring</span><b>→</b><span>Trakea</span><b>→</b><span>Bronkus</span><b>→</b><span>Bronkiolus</span><b>→</b><span>Alveolus</span></div>
+ <div class="card" style="background:#f2fbff"><h3 id="stepTitle">Siap menjelajah?</h3><p id="stepText">Tekan “Mulai animasi” untuk menelusuri jalur udara tahap demi tahap.</p><div class="progress"><div id="stepProgress"></div></div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="nextStep()">Mulai / Lanjut →</button><button class="btn" onclick="resetSteps()">Ulangi</button></div></div>
+ <h3>Perhatikan!</h3><div class="grid"><div class="organ-card"><h3>Inspirasi</h3><p>Saat menarik napas, diafragma berkontraksi dan bergerak turun sehingga rongga dada membesar; udara masuk ke paru-paru.</p></div><div class="organ-card"><h3>Ekspirasi</h3><p>Saat mengembuskan napas secara normal, diafragma relaksasi dan bergerak naik; volume rongga dada mengecil dan udara keluar.</p></div></div>
+ </div>
+</section>
+
+<section id="latihan" class="screen">
+ <div class="card"><span class="pill">Aktivitas 3</span><h2>Kuis cepat</h2><p>Pilih satu jawaban yang paling tepat. Skor akan dihitung otomatis.</p>
+ <div id="quiz"></div><button class="btn primary" onclick="checkQuiz()">Periksa jawaban</button><button class="btn" onclick="resetQuiz()">Ulangi kuis</button><div class="feedback" id="quizFeedback" aria-live="polite"></div></div>
+</section>
+
+<section id="urutkan" class="screen">
+ <div class="card"><span class="pill">Aktivitas 4</span><h2>Susun jalur udara</h2>
+ <p>Klik nama organ menurut urutan jalannya udara dari luar tubuh hingga tempat pertukaran gas. Ini adalah aktivitas mengurutkan (drag-and-drop sederhana berbasis klik).</p>
+ <div id="sortChoices" class="options"></div><h3>Urutan pilihanmu</h3><div id="sortAnswer" class="sort-area"></div>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="checkSort()">Periksa urutan</button><button class="btn" onclick="resetSort()">Ulangi</button></div><div id="sortFeedback" class="feedback" aria-live="polite"></div>
+ </div>
+</section>
+</main>
+<footer>MPI IPA Kelas VIII • Sistem Pernapasan Manusia • Dibuat untuk pembelajaran mandiri</footer>
+<script>
+const organs={
+'Hidung':{ciri:'Memiliki rongga berlapis rambut halus dan lendir.',fungsi:'Menyaring, menghangatkan, dan melembapkan udara yang masuk.'},
+'Faring':{ciri:'Saluran di belakang rongga hidung dan mulut.',fungsi:'Menyalurkan udara dari rongga hidung menuju laring.'},
+'Laring':{ciri:'Bagian saluran napas yang memiliki pita suara dan epiglotis.',fungsi:'Mengalirkan udara ke trakea; pita suara membantu menghasilkan suara.'},
+'Trakea':{ciri:'Pipa yang diperkuat cincin tulang rawan dan dilapisi lendir serta silia.',fungsi:'Menyalurkan udara ke bronkus serta membantu menangkap partikel asing.'},
+'Bronkus':{ciri:'Dua cabang utama trakea yang menuju paru-paru kanan dan kiri.',fungsi:'Membawa udara dari trakea ke cabang saluran napas yang lebih kecil.'},
+'Paru-paru':{ciri:'Sepasang organ berisi cabang bronkus, bronkiolus, dan alveolus.',fungsi:'Menjadi tempat berlangsungnya pertukaran gas melalui alveolus.'},
+'Alveolus':{ciri:'Kantung udara sangat kecil berdinding tipis dan dikelilingi kapiler darah.',fungsi:'Tempat oksigen berdifusi ke darah dan karbon dioksida berdifusi dari darah ke udara.'}
+};
+function showOrgan(n){let o=organs[n];document.getElementById('organInfo').innerHTML=`<div class="label">Organ terpilih</div><h3>${n}</h3><p><b>Ciri:</b> ${o.ciri}</p><p><b>Fungsi:</b> ${o.fungsi}</p>`}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.screen)));
+const steps=[
+['Hidung','Udara masuk melalui hidung. Rambut halus dan lendir membantu menyaring partikel; udara juga dihangatkan dan dilembapkan.'],
+['Faring','Udara melewati faring, yaitu persimpangan saluran di belakang rongga hidung dan mulut.'],
+['Laring','Udara melewati laring menuju trakea. Epiglotis membantu melindungi jalan napas saat menelan.'],
+['Trakea','Trakea menyalurkan udara dan silia membantu menggerakkan lendir serta partikel ke arah faring.'],
+['Bronkus','Trakea bercabang menjadi bronkus kanan dan kiri yang menuju paru-paru.'],
+['Bronkiolus','Bronkus bercabang menjadi saluran yang semakin kecil, yaitu bronkiolus.'],
+['Alveolus','Di alveolus, oksigen berdifusi ke kapiler darah dan karbon dioksida berdifusi ke alveolus untuk dikeluarkan.']
+];let stepIndex=-1;
+function nextStep(){stepIndex=(stepIndex+1)%steps.length;document.getElementById('stepTitle').textContent=(stepIndex+1)+'. '+steps[stepIndex][0];document.getElementById('stepText').textContent=steps[stepIndex][1];document.getElementById('stepProgress').style.width=((stepIndex+1)/steps.length*100)+'%';document.querySelectorAll('#flowSteps span').forEach((s,i)=>{s.style.background=i===stepIndex?'#ffdd75':i<stepIndex?'#d8f3dc':'#e4f7ed';s.style.transform=i===stepIndex?'scale(1.05)':'none'})}
+function resetSteps(){stepIndex=-1;document.getElementById('stepTitle').textContent='Siap menjelajah?';document.getElementById('stepText').textContent='Tekan “Mulai animasi” untuk menelusuri jalur udara tahap demi tahap.';document.getElementById('stepProgress').style.width='0%';document.querySelectorAll('#flowSteps span').forEach(s=>{s.style.background='#e4f7ed';s.style.transform='none'})}
+const questions=[
+{q:'Organ yang pertama kali dilalui udara dari lingkungan luar adalah …',opts:['Trakea','Hidung','Alveolus','Bronkus'],a:'Hidung',why:'Hidung menjadi pintu masuk utama udara dan membantu menyaringnya.'},
+{q:'Tempat utama pertukaran oksigen dan karbon dioksida adalah …',opts:['Faring','Laring','Alveolus','Trakea'],a:'Alveolus',why:'Dinding alveolus tipis dan dikelilingi kapiler darah.'},
+{q:'Trakea bercabang menjadi dua saluran utama yang disebut …',opts:['Bronkus','Alveolus','Faring','Diafragma'],a:'Bronkus',why:'Bronkus kanan dan kiri membawa udara menuju paru-paru.'},
+{q:'Struktur yang membantu menyaring partikel melalui lendir dan silia terdapat antara lain pada …',opts:['Trakea','Alveolus saja','Diafragma','Kapiler darah'],a:'Trakea',why:'Lendir menangkap partikel dan silia membantu menggerakkannya.'},
+{q:'Saat inspirasi normal, diafragma umumnya …',opts:['Relaksasi dan naik','Berkontraksi dan turun','Tidak bergerak','Menutup trakea'],a:'Berkontraksi dan turun',why:'Kontraksi diafragma memperbesar volume rongga dada.'}
+];
+function renderQuiz(){document.getElementById('quiz').innerHTML=questions.map((q,i)=>`<div class="question"><b>${i+1}. ${q.q}</b><div class="options">${q.opts.map(o=>`<label><input type="radio" name="q${i}" value="${o}"> ${o}</label>`).join('')}</div><div id="why${i}" class="small muted"></div></div>`).join('');document.getElementById('quizFeedback').textContent=''}
+function checkQuiz(){let score=0,answered=0;questions.forEach((q,i)=>{let v=document.querySelector(`input[name="q${i}"]:checked`);let w=document.getElementById('why'+i);if(v){answered++;if(v.value===q.a){score++;w.innerHTML='<span class="correct">Benar.</span> '+q.why}else{w.innerHTML='<span class="wrong">Belum tepat.</span> Jawaban: '+q.a+'. '+q.why}}else{w.innerHTML='<span class="wrong">Belum dijawab.</span> Jawaban: '+q.a+'. '+q.why}});document.getElementById('quizFeedback').textContent=`Skor: ${score}/${questions.length} (${Math.round(score/questions.length*100)}%). Dijawab: ${answered}/${questions.length}.`}
+function resetQuiz(){renderQuiz()}renderQuiz();
+const correctOrder=['Hidung','Faring','Laring','Trakea','Bronkus','Bronkiolus','Alveolus'];let picked=[];
+function renderSort(){document.getElementById('sortChoices').innerHTML=correctOrder.filter(x=>!picked.includes(x)).sort((a,b)=>a.localeCompare(b,'id')).map(x=>`<button onclick="pickSort('${x}')">${x}</button>`).join('');document.getElementById('sortAnswer').innerHTML=picked.map((x,i)=>`<button class="sort-chip" title="Klik untuk menghapus" onclick="removeSort('${x}')">${i+1}. ${x} ×</button>`).join('')}
+function pickSort(x){picked.push(x);renderSort();document.getElementById('sortFeedback').textContent=''}
+function removeSort(x){picked=picked.filter(y=>y!==x);renderSort()}
+function checkSort(){let ok=picked.length===correctOrder.length&&picked.every((x,i)=>x===correctOrder[i]);document.getElementById('sortFeedback').innerHTML=ok?'<span class="correct">Hebat! Urutanmu benar.</span>':'<span class="wrong">Belum tepat.</span> Urutan yang benar: '+correctOrder.join(' → ')+'.'}
+function resetSort(){picked=[];renderSort();document.getElementById('sortFeedback').textContent=''}renderSort();
+</script>
+</body>
+</html>
